@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/loader.dart';
 import 'package:flutter_application_1/overlay.dart';
 
 void main() {
@@ -20,10 +21,7 @@ class MyApp extends StatelessWidget {
             ),
             home: MyHomePage(title: 'Flutter Demo Home Page'),
           ),
-          Container(
-            child: OverlayView(),
-            color: Colors.black.withOpacity(0.5),
-          ),
+          OverlayView(),
         ],
       ),
     );
@@ -42,10 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   bool isLoading = false;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _incrementCounter() async {
+    Loader.appLoader.showLoader();
+    // Loader.appLoader.setText();
+    await Future.delayed(Duration(seconds: 5));
+    Loader.appLoader.hideLoader();
   }
 
   @override
@@ -80,5 +79,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
