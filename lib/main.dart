@@ -38,13 +38,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  bool isLoading = false;
 
   void _incrementCounter() async {
     Loader.appLoader.showLoader();
-    // Loader.appLoader.setText();
+    Loader.appLoader.setText(errorMessage: 'this is custom error message');
     await Future.delayed(Duration(seconds: 5));
-    Loader.appLoader.hideLoader();
+    // Loader.appLoader.hideLoader();
   }
 
   @override

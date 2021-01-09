@@ -12,61 +12,68 @@ class OverlayView extends StatelessWidget {
       valueListenable: Loader.appLoader.loaderShowingNotifier,
       builder: (context, value, child) {
         if (value) {
-          return Container(
-            color: Colors.black.withOpacity(0.5),
-            child: Center(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Icon(
-                                Icons.error_rounded,
-                                color: Colors.red,
-                                size: 80,
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Column(
-                                children: [
-                                  ValueListenableBuilder<String>(
-                                    builder: (context, value, child) {
-                                      return Text(value);
-                                    },
-                                    valueListenable:
-                                        Loader.appLoader.loaderTextNotifier,
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    'this is error message asdadajd asdbka bnabdbabda ajnsdn asd asdabdjad adjandakda dabsdja asdbajdba asja  ',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return yourOverLayWidget();
         } else {
           return Container();
         }
       },
+    );
+  }
+
+  Container yourOverLayWidget() {
+    return Container(
+      color: Colors.black.withOpacity(0.5),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Row(
+            children: [
+              Expanded(
+                child: Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.close_outlined),
+                            onPressed: () {
+                              Loader.appLoader.hideLoader();
+                            },
+                          ),
+                        ],
+                      ),
+                      Icon(
+                        Icons.error_rounded,
+                        color: Colors.red,
+                        size: 50,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Column(
+                        children: [
+                          ValueListenableBuilder<String>(
+                            builder: (context, value, child) {
+                              return Text(value);
+                            },
+                            valueListenable:
+                                Loader.appLoader.loaderTextNotifier,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
