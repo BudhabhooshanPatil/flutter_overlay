@@ -1,31 +1,52 @@
 import 'package:flutter/material.dart';
 
-class OverlayView extends StatefulWidget {
-  final String popupTitle;
-  final String popupMessage;
-  final Icon popupImage;
-  final Function ontap;
-  const OverlayView(
-      {Key key,
-      this.popupTitle,
-      this.popupMessage,
-      this.popupImage,
-      this.ontap})
-      : super(key: key);
+class OverlayView extends StatelessWidget {
+  const OverlayView({
+    Key key,
+  }) : super(key: key);
 
-  @override
-  _OverlayViewState createState() => _OverlayViewState();
-}
-
-class _OverlayViewState extends State<OverlayView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.50),
-      body: Container(
-        child: InkWell(
-          onTap: this.widget.ontap,
-        ),
+    return Center(
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(
+                        Icons.error_rounded,
+                        color: Colors.red,
+                        size: 80,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Column(
+                        children: [
+                          Text('Error title'),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            'this is error message asdadajd asdbka bnabdbabda ajnsdn asd asdabdjad adjandakda dabsdja asdbajdba asja  ',
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
