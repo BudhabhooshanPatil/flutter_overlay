@@ -91,8 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         isLoading
             ? Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                alignment: Alignment.center,
                 child: overLay(),
                 height: double.infinity,
                 width: double.infinity,
@@ -103,15 +101,48 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Container overLay() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 32.0),
-      alignment: Alignment.center,
-      color: Colors.white,
-      child: Icon(
-        Icons.error_rounded,
-        color: Colors.red,
-        size: 100,
+  Center overLay() {
+    return Center(
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        isLoading = false;
+                      });
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Icon(
+                          Icons.error_rounded,
+                          color: Colors.red,
+                          size: 80,
+                        ),
+                        Column(
+                          children: [
+                            Text('Error title'),
+                            Text(
+                              'this is error message asdadajd asdbka bnabdbabda ajnsdn asd asdabdjad adjandakda dabsdja asdbajdba asja  ',
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
